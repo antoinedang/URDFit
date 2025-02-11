@@ -1,0 +1,1 @@
+NOTE: For first version, all examples will be using MuJoCo
