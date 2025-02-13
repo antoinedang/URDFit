@@ -7,7 +7,7 @@ if __name__ == "__main__":
     # Load MJCF system
     path = "experiment/test.xml"
 
-    urdfit = URDFit(path)
+    urdfit = URDFit(path, 0.02)
 
     def run_gradient_step(batch_size=1):
         key = jax.random.PRNGKey(0)  # Seed with 0 (or any other integer)
@@ -66,7 +66,7 @@ if __name__ == "__main__":
 
     # RUN GRADIENT COMPUTATION ONCE TO JITTIFY FUNCTIONS
     run_gradient_step()
-    N = 10000
+    N = 10
     start_time = time.time()
     for _ in range(N):
         run_gradient_step()

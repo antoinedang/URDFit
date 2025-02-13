@@ -39,8 +39,6 @@ Installation (Windows) (other platforms might require different installation ste
 
 `conda activate urdfit-env`
 
-`pip install -r requirements.txt`
-
-`pip install -e .`
+`pip install .`
 
 NOTE: Only accepts MJCF files, but you can use `urdf2mjcf path/to/your/robot.urdf` to convert a URDF to MJCF format. (already included in requirements.txt)

@@ -34,7 +34,7 @@ if __name__ == "__main__":
             next_state_qd,
         )
 
-        ParamHelper.print(urdfit.get_optimized_params())
+        optimized_params = urdfit.get_optimized_params()
 
         # render
         if RENDER:

@@ -2,7 +2,7 @@ import jax
 from brax.generalized import pipeline
 from brax.io import mjcf
 from urdfit.param_optimizer import ParamOptimizer
-from urdfit.param_helper import ParamHelper
+from urdfit.param_helper import ParamHelper, Params
 from urdfit.state_evaluator import StateEvaluator
 from urdfit import print
 from jax import numpy as jnp
@@ -27,7 +27,7 @@ class URDFit:
         # INIT STATE EVALUATOR
         self.state_evaluator = StateEvaluator(state_evaluator_config)
 
-    def get_optimized_params(self) -> jnp.ndarray:
+    def get_optimized_params(self) -> Params:
         return self.param_optimizer.get_params()
 
     def load_from_mjcf(self, mjcf_path: str, timestep: float) -> None:
@@ -41,9 +41,10 @@ class URDFit:
         except Exception as e:
             print("ERROR: MJCF could not be loaded as a valid Brax system.")
             print(f"Full Traceback: {e}")
-        self.sys = self.sys.replace(dt=timestep)
+        new_opt = self.sys.opt.replace(timestep=timestep)
+        self.sys = self.sys.replace(opt=new_opt)
 
-    def loss_fn(self, params: jnp.ndarray) -> float:
+    def loss_fn(self, params: Params) -> float:
         # UPDATE SYSTEM WITH GIVEN PARAMS
         new_sys = ParamHelper.make_sys(self.sys, params)
         # STEP SYSTEM
@@ -58,7 +59,7 @@ class URDFit:
 
     def single_step(
         self,
-        current_params: jnp.ndarray,
+        current_params: Params,
         state_q: jnp.ndarray,
         state_qd: jnp.ndarray,
         action: jnp.ndarray,
