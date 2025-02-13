@@ -1,3 +1,4 @@
 *.pyc
-urdfit.egg-info/
+*.egg-info/
 __pycache__/
+experiment/mujoco_mpc/build/
