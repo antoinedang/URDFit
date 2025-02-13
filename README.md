@@ -13,10 +13,7 @@
 
 
 ### TODO:
-- Get Brax up and running (i.e. ingesting URDF, setting simulation state, setting URDF parameters programatically, stepping simulation, backpropagating state error to parameters)
-- Be able to select which parameters are backpropagated to (if possible)
 - Setup naive optimization method and interface to start testing with MuJoCo
-    - Make the optimization method easily swappable (.json config system would likely be best)
 - Get MuJoCo up and running (selectable policy) and sending data to identification module as well as simulating (togglable)
 - Use identification module outputs to update MuJoCo URDF parameters on-the-fly (ideally, those changes should propagate to MPC as well)
 - Set up automatic experiment running (experiment configs that include what mujoco should simulate, what policy to use in mujoco, what optimization method to use in Brax, where to log results, how often to update URDF parameters for policy, how often to send data from MuJoCo to Brax, etc.)
@@ -34,3 +31,16 @@ Experimentation workflow:
 Overall: urdfit will be self-contained python library
 
 experiment script can be one or a few python scripts in experiment folder (no need to make a package)
+
+
+Installation (Windows) (other platforms might require different installation steps):
+
+`conda create -n urdfit-env python=3.11`
+
+`conda activate urdfit-env`
+
+`pip install -r requirements.txt`
+
+`pip install -e .`
+
+NOTE: Only accepts MJCF files, but you can use `urdf2mjcf path/to/your/robot.urdf` to convert a URDF to MJCF format. (already included in requirements.txt)
