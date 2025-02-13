@@ -1,4 +1,4 @@
-from mpc_utils import *
+from experiment.mujoco_utils import *
 
 RENDER = False
 

@@ -3,7 +3,7 @@ import json
 import time
 import numpy as np
 import cv2
-from mpc_utils import *
+from experiment.mujoco_utils import *
 
 host = "localhost"
 port = 5555

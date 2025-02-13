@@ -1,4 +1,4 @@
-from mpc_utils import *
+from experiment.mujoco_utils import *
 
 if __name__ == "__main__":
     RENDER = True  # make False to calculate control frequency
